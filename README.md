@@ -1,5 +1,7 @@
 # cs377uchat
 
+Files adapted from: https://snack.expo.io/@bacon/firebase-basic-chat-video-tutorial
+
 ## To run
 
 In the terminal: 
