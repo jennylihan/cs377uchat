@@ -23,4 +23,4 @@ Then start up the expo app:
 ```expo start```
 
 
-Try the built app at https://expo.io/artifacts/a429a7a0-dfca-45b9-9a08-fd3216d250e6
+Try the built app at https://expo.io/@jennylihan/cs377udemo, https://expo.io/artifacts/a429a7a0-dfca-45b9-9a08-fd3216d250e6
