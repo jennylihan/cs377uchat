@@ -13,3 +13,6 @@ In the terminal:
 * Select database and functions
 
 ```firebase deploy```
+
+Then start up the expo app:
+```expo start```
