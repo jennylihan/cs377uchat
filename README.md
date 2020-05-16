@@ -1,6 +1,7 @@
 # cs377uchat
 
 Files adapted from: https://snack.expo.io/@bacon/firebase-basic-chat-video-tutorial
+This is to demo that GiftedChat works with Firebase. User authentication is set to anonymous. 
 
 ## To run
 
