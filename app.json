@@ -23,7 +23,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true, 
+      "bundleIdentifier": "cs377u.stanford.edu",
+      "buildNumber": "1.0.0"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
