@@ -15,7 +15,7 @@ In the terminal:
 ```firebase login```
 
 ```firebase init```
-* Select database and functions
+* Select database (Use an existing project -> cs377u-demo)
 
 ```firebase deploy```
 
