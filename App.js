@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
 import LinksScreen from './screens/LinksScreen';
+import SignUpScreen from './screens/SignUpScreen';
 import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
@@ -24,6 +25,7 @@ export default function App(props) {
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

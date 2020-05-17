@@ -1,5 +1,9 @@
+//Adapted from https://blog.expo.io/how-to-build-a-chat-app-with-react-native-3ef8604ebb3c
+//and  https://github.com/JscramblerBlog/RNfirebase-chat/blob/master/components/Signup.js
+
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
+import Fire from '../Fire';
 import {Component, useState} from 'react';
 import { Image, Platform, Button, StyleSheet, Text, TouchableOpacity, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -7,34 +11,75 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 
 class HomeScreen extends React.Component{
-  state = {
-    name: ''
-  };
+  static navigationOptions = {
+		title: 'RN + Firebase Chat App'
+	};
 
-  onChangeText = name => this.setState({name});
+	state = {
+		name: 'Alice',
+		email: 'test@gmail.com',
+		password: '123456',
+		avatar: ''
+	};
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            <Text style={styles.getStartedText}>
-              Log in~
-            </Text>
-            <TextInput
-              placeHolder = "username"
-              style={styles.nameInput}
-              onChangeText={this.onChangeText}
-              value={this.state.name}
-            />
-            <Button
-              title="Go to Chat"
-              buttonStyle={styles.button}
-              onPress={() => this.props.navigation.navigate('Chat', {name: this.state.name})}
-            />
-        </ScrollView>
-      </View>
-    );
-  }
+	onPressLogin = async () => {
+		const user = {
+			email: this.state.email,
+			password: this.state.password,
+			avatar: this.state.avatar
+		};
+
+		const response = Fire.shared.login(
+			user,
+			this.loginSuccess,
+			this.loginFailed
+		);
+	};
+
+	loginSuccess = () => {
+		this.props.navigation.navigate('Chat', {
+			email: this.state.email,
+			avatar: this.state.avatar
+		});
+	};
+
+	loginFailed = () => {
+		alert('Login failure. Please try again.');
+	};
+
+	onChangeTextEmail = email => this.setState({ email });
+	onChangeTextPassword = password => this.setState({ password });
+
+	render() {
+		return (
+			<View>
+				<Text style={styles.title}>Email:</Text>
+				<TextInput
+					style={styles.nameInput}
+					placeholder="test3@gmail.com"
+					onChangeText={this.onChangeTextEmail}
+					value={this.state.email}
+				/>
+				<Text style={styles.title}>Password:</Text>
+				<TextInput
+					style={styles.nameInput}
+					onChangeText={this.onChangeTextPassword}
+					value={this.state.password}
+				/>
+				<Button
+					title="Login"
+					style={styles.buttonText}
+					onPress={this.onPressLogin}
+				/>
+
+				<Button
+					title="Signup"
+					style={styles.buttonText}
+					onPress={() => this.props.navigation.navigate('SignUp')}
+				/>
+			</View>
+		);
+	}
 }
 
 export default HomeScreen;

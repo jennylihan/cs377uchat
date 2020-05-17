@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ChatScreen from '../screens/ChatScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -55,6 +56,8 @@ function getHeaderTitle(route) {
     case 'Links':
       return 'Links to learn more';
     case 'Chat':
-      return 'Welcome';
+      return 'Chats';
+      case 'Sign Up':
+        return 'Sign Up';
   }
 }
