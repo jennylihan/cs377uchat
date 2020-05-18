@@ -29,7 +29,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Chat Rooms"
+        name="Chat"
         component={QuestionRooms}
         options={{
           title: 'Chat Rooms',
@@ -57,6 +57,6 @@ function getHeaderTitle(route) {
     case 'Links':
       return 'Links to learn more';
     case 'Chat':
-      return 'Chats';
+      return 'Chat Rooms';
   }
 }

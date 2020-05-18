@@ -34,7 +34,7 @@ class HomeScreen extends React.Component{
 	};
 
 	loginSuccess = () => {
-		this.props.navigation.navigate('Chat Rooms', {
+		this.props.navigation.navigate('Chat', {
 			email: this.state.email,
 			avatar: this.state.avatar
 		});

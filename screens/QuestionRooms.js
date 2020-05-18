@@ -13,13 +13,13 @@ class QuestionRooms extends React.Component {
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <OptionButton
-          icon="md-school"
+          icon="ios-chatboxes"
           label="Question 1 Chat Room"
           onPress={() => this.props.navigation.navigate('ChatScreen1')}
         />
 
         <OptionButton
-          icon="md-compass"
+          icon="ios-chatboxes"
           label="Question 2 Chat Room"
           onPress={() =>
           this.props.navigation.navigate('ChatScreen2')}
