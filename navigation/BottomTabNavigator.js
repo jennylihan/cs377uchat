@@ -58,7 +58,5 @@ function getHeaderTitle(route) {
       return 'Links to learn more';
     case 'Chat':
       return 'Chats';
-      case 'Sign Up':
-        return 'Sign Up';
   }
 }

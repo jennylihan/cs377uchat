@@ -9,7 +9,6 @@ export default {
         Home: 'home',
         Links: 'links',
         Chats: 'chat',
-        SignUp: 'signup'
       },
     },
   },
