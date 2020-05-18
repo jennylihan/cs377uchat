@@ -4,7 +4,7 @@ import * as React from 'react';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import ChatScreen from '../screens/ChatScreen';
+import ChatScreen1 from '../screens/ChatScreen1';
 import SignUpScreen from '../screens/SignUpScreen';
 import QuestionRooms from '../screens/QuestionRooms';
 
@@ -29,10 +29,10 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Chat"
+        name="Chat Rooms"
         component={QuestionRooms}
         options={{
-          title: 'Chat',
+          title: 'Chat Rooms',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatboxes" />,
         }}
       />

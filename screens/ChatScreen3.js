@@ -17,7 +17,7 @@ function Welcome(props){
   return <Text style={styles.getStartedText}>Hello, {props.name}</Text>;
 }
 
-class ChatScreen extends React.Component<Props>{
+class ChatScreen3 extends React.Component<Props>{
 
   state = {
     messages: [],
@@ -55,7 +55,7 @@ class ChatScreen extends React.Component<Props>{
   }
 }
 
-export default ChatScreen;
+export default ChatScreen3;
 
 const styles = StyleSheet.create({
   container: {

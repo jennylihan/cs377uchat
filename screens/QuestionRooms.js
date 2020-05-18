@@ -4,26 +4,31 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
+type Props = {
+  name?: string,
+};
+
 class QuestionRooms extends React.Component {
-  render() {
+  render(props) {
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <OptionButton
           icon="md-school"
           label="Question 1 Chat Room"
-          onPress={() => this.props.navigation.navigate('ChatScreen')}
+          onPress={() => this.props.navigation.navigate('ChatScreen1')}
         />
 
         <OptionButton
           icon="md-compass"
           label="Question 2 Chat Room"
-          onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+          onPress={() =>
+          this.props.navigation.navigate('ChatScreen2')}
         />
 
         <OptionButton
           icon="ios-chatboxes"
           label="Question 3 Chat Room"
-          onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
+          onPress={() => this.props.navigation.navigate('ChatScreen3')}
           isLastOption
         />
       </ScrollView>

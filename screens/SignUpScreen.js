@@ -115,7 +115,7 @@ export default class Signup extends React.Component {
         <Button
           title="Back to Log In"
           style={styles.buttonText}
-          onPress={() => this.props.navigation.navigate('Root')}
+          onPress={() => this.props.navigation.navigate('Chat Rooms')}
         />
 			</View>
 		);
