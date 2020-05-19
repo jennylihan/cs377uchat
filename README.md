@@ -1,9 +1,11 @@
 # cs377uchat
 
-Files adapted from: https://snack.expo.io/@bacon/firebase-basic-chat-video-tutorial and https://www.youtube.com/watch?v=qo7xtBCh18o (Not using React Navigation 5). 
+Files adapted from: https://snack.expo.io/@bacon/firebase-basic-chat-video-tutorial and https://blog.jscrambler.com/build-a-chat-app-with-firebase-and-react-native/ (which do not use React Navigation 5). 
 
 
-This is to demo that GiftedChat works with Firebase and React Navigation 5. User authentication is set to anonymous. 
+This is to demo that GiftedChat works with Firebase and React Navigation 5.
+In the master branch, users sign in anonymously. 
+In the loginsignup branch, users log in and sign up via email/password. 
 
 ## To run
 
@@ -26,4 +28,6 @@ If there's a pop up that warns the firebase you installed is the wrong version:
 ```expo install firebase```
 
 
-Try the built app at https://expo.io/@jennylihan/cs377udemo, https://expo.io/artifacts/a429a7a0-dfca-45b9-9a08-fd3216d250e6
+Try the built app at
+* https://expo.io/@jennylihan/cs377udemo
+* https://expo.io/artifacts/2eabfce6-ca47-4350-8b7e-17d21379a82e
