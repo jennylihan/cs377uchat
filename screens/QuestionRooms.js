@@ -4,26 +4,40 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function HomeScreen() {
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <Text style={styles.getStartedText}>Welcome to Code2Gether </Text>
+type Props = {
+  name?: string,
+};
 
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
+class QuestionRooms extends React.Component {
+  render(props) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 1 Chat Room"
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages1'})}
+        />
 
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 2 Chat Room"
+          onPress={() =>
+          this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages2'})}
+        />
+
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 3 Chat Room"
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages3'})}
+          isLastOption
+        />
+      </ScrollView>
+    );
+  }
 }
+
+export default QuestionRooms;
+
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (

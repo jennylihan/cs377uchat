@@ -24,6 +24,9 @@ In the terminal:
 Then start up the expo app:
 ```expo start```
 
+If there's a pop up that warns the firebase you installed is the wrong version:
+```expo install firebase```
+
 
 Try the built app at
 * https://expo.io/@jennylihan/cs377udemo

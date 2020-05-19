@@ -1,25 +1,13 @@
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="/__/firebase/7.14.4/firebase-app.js"></script>
-//
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="/__/firebase/7.14.4/firebase-analytics.js"></script>
-//
-// <!-- Initialize Firebase -->
-// <script src="/__/firebase/init.js"></script>
+//Login and createAccount were adapted from https://github.com/JscramblerBlog/RNfirebase-chat/blob/master/components/Signup.js
+//The rest of the code was adapted from https://blog.expo.io/how-to-build-a-chat-app-with-react-native-3ef8604ebb3c
 
-
-import firebase from 'firebase'; // 4.8.1
+import firebase from 'firebase';
 
 class Fire {
-  constructor() {
-    this.init();
-    this.observeAuth();
-  }
-
-  init = () => {
-    if (!firebase.apps.length) {
-      firebase.initializeApp({
+	constructor() {
+		this.chatRoomName = "messages";
+		if (!firebase.apps.length) {
+			firebase.initializeApp({
         apiKey: "AIzaSyBECbPsPXyNLhUqHTqFJUJVjqtpLWimxJQ",
         authDomain: "cs377u-demo.firebaseapp.com",
         databaseURL: "https://cs377u-demo.firebaseio.com",
@@ -28,29 +16,105 @@ class Fire {
         messagingSenderId: "868121913126",
         appId: "1:868121913126:web:6caee51369ad913b7c43e7",
         measurementId: "G-HD064Q1H6J"
-      });
-    }
-  };
+			});
+		}
+	}
 
-  observeAuth = () =>
-    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+	login = async (user, success_callback, failed_callback) => {
+    console.log(user.email);
+    console.log(user.password);
+		await firebase
+			.auth()
+			.signInWithEmailAndPassword(user.email, user.password)
+			.then(success_callback, failed_callback);
+	};
 
-  onAuthStateChanged = user => {
-    if (!user) {
-      try {
-        firebase.auth().signInAnonymously();
-      } catch ({ message }) {
-        alert(message);
+	createAccount = async user => {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(user.email, user.password)
+    .then(
+      function() {
+        console.log(
+          'created user successfully. User email:' +
+            user.email +
+            ' name:' +
+            user.name
+        );
+        var userf = firebase.auth().currentUser;
+        userf.updateProfile({ displayName: user.name }).then(
+          function() {
+            console.log('Updated displayName successfully. name:' + user.name);
+            alert(
+              'User ' + user.name + ' was created successfully. Please login.'
+            );
+          },
+          function(error) {
+            console.warn('Error update displayName.');
+          }
+        );
+      },
+      function(error) {
+        console.error('got error:' + typeof error + ' string:' + error.message);
+        alert('Create account failed. Error: ' + error.message);
       }
-    }
-  };
+    );
+	};
+
+	uploadImage = async uri => {
+	  console.log('got image to upload. uri:' + uri);
+	  try {
+	    const response = await fetch(uri);
+	    const blob = await response.blob();
+	    const ref = firebase
+	      .storage()
+	      .ref('avatar')
+	      .child(uuid.v4());
+	    const task = ref.put(blob);
+
+	    return new Promise((resolve, reject) => {
+	      task.on(
+	        'state_changed',
+	        () => {
+
+	        },
+	        reject, () => resolve(task.snapshot.downloadURL)
+	      );
+	    });
+	  } catch (err) {
+	    console.log('uploadImage try/catch error: ' + err.message);
+	  }
+	};
+
+	updateAvatar = url => {
+
+	  var userf = firebase.auth().currentUser;
+	  if (userf != null) {
+	    userf.updateProfile({ avatar: url }).then(
+	      function() {
+	        console.log('Updated avatar successfully. url:' + url);
+	        alert('Avatar image is saved successfully.');
+	      },
+	      function(error) {
+	        console.warn('Error update avatar.');
+	        alert('Error update avatar. Error:' + error.message);
+	      }
+	    );
+	  } else {
+	    console.log("can't update avatar, user is not login.");
+	    alert('Unable to update avatar. You must login first.');
+	  }
+	};
 
   get uid() {
     return (firebase.auth().currentUser || {}).uid;
   }
 
+	get name() {
+    return (firebase.auth().currentUser || {}).displayName;
+  }
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref(this.chatRoomName);
   }
 
   parse = snapshot => {
@@ -66,10 +130,12 @@ class Fire {
     return message;
   };
 
-  on = callback =>
-    this.ref
+  on = (callback, chatRoomName) => {
+		this.chatRoomName = chatRoomName;
+		this.ref
       .limitToLast(20)
       .on('child_added', snapshot => callback(this.parse(snapshot)));
+		}
 
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
@@ -95,5 +161,5 @@ class Fire {
   }
 }
 
-Fire.shared = new Fire();
-export default Fire;
+  Fire.shared = new Fire();
+  export default Fire;
