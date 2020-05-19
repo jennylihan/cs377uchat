@@ -20,6 +20,7 @@ export default class Signup extends React.Component {
 				name: this.state.name,
 				email: this.state.email,
 				password: this.state.password
+				//add more props & match this in Fire.js
 			};
 			await Fire.shared.createAccount(user);
 		} catch ({ message }) {

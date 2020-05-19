@@ -1,9 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen';
-import ChatScreen1 from './screens/ChatScreen1';
-import ChatScreen2 from './screens/ChatScreen2';
-import ChatScreen3 from './screens/ChatScreen3';
+import LoginScreen from './screens/LoginScreen';
 import LinksScreen from './screens/LinksScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ChatScreen from './screens/ChatScreen';
@@ -27,11 +24,9 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="Chat Rooms" component={BottomTabNavigator} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ChatScreen1" component={ChatScreen1} />
-            <Stack.Screen name="ChatScreen2" component={ChatScreen2} />
-            <Stack.Screen name="ChatScreen3" component={ChatScreen3} />
             <Stack.Screen name="ChatScreen" component={ChatScreen} />
           </Stack.Navigator>
         </NavigationContainer>
