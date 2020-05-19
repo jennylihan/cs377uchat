@@ -48,7 +48,7 @@ class ChatScreen3 extends React.Component<Props>{
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, message),
       }))
-    );
+    ,"chatRoom3");
   }
   componentWillUnmount() {
     Fire.shared.off();

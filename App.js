@@ -6,6 +6,7 @@ import ChatScreen2 from './screens/ChatScreen2';
 import ChatScreen3 from './screens/ChatScreen3';
 import LinksScreen from './screens/LinksScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import ChatScreen from './screens/ChatScreen';
 import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
@@ -31,6 +32,7 @@ export default function App(props) {
             <Stack.Screen name="ChatScreen1" component={ChatScreen1} />
             <Stack.Screen name="ChatScreen2" component={ChatScreen2} />
             <Stack.Screen name="ChatScreen3" component={ChatScreen3} />
+            <Stack.Screen name="ChatScreen" component={ChatScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

@@ -17,7 +17,7 @@ function Welcome(props){
   return <Text style={styles.getStartedText}>Hello, {props.name}</Text>;
 }
 
-class ChatScreen1 extends React.Component<Props>{
+class ChatScreen extends React.Component<Props>{
 
   state = {
     messages: [],
@@ -48,14 +48,14 @@ class ChatScreen1 extends React.Component<Props>{
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, message),
       }))
-    ,"chatRoom1");
+    ,JSON.stringify(this.props.route.params.chatRoomName));
   }
   componentWillUnmount() {
     Fire.shared.off();
   }
 }
 
-export default ChatScreen1;
+export default ChatScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -15,20 +15,20 @@ class QuestionRooms extends React.Component {
         <OptionButton
           icon="ios-chatboxes"
           label="Question 1 Chat Room"
-          onPress={() => this.props.navigation.navigate('ChatScreen1')}
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages1'})}
         />
 
         <OptionButton
           icon="ios-chatboxes"
           label="Question 2 Chat Room"
           onPress={() =>
-          this.props.navigation.navigate('ChatScreen2')}
+          this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages2'})}
         />
 
         <OptionButton
           icon="ios-chatboxes"
           label="Question 3 Chat Room"
-          onPress={() => this.props.navigation.navigate('ChatScreen3')}
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages3'})}
           isLastOption
         />
       </ScrollView>

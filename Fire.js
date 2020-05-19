@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 class Fire {
 	constructor() {
+		this.chatRoomName = "messages";
 		if (!firebase.apps.length) {
 			firebase.initializeApp({
         apiKey: "AIzaSyBECbPsPXyNLhUqHTqFJUJVjqtpLWimxJQ",
@@ -113,7 +114,7 @@ class Fire {
     return (firebase.auth().currentUser || {}).displayName;
   }
   get ref() {
-    return firebase.database().ref('messages');
+    return firebase.database().ref(this.chatRoomName);
   }
 
   parse = snapshot => {
@@ -129,10 +130,12 @@ class Fire {
     return message;
   };
 
-  on = callback =>
-    this.ref
+  on = (callback, chatRoomName) => {
+		this.chatRoomName = chatRoomName;
+		this.ref
       .limitToLast(20)
       .on('child_added', snapshot => callback(this.parse(snapshot)));
+		}
 
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
