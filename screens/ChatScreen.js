@@ -58,7 +58,6 @@ export default class Chatscreen extends Component {
               <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
 
             </View>
-
               <View style={styles.bodyContent}>
                 <Text style={styles.name}>MB</Text>
                 <Text style={styles.info}>Junior</Text>
