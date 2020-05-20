@@ -1,5 +1,5 @@
 // Adapted from https://blog.expo.io/how-to-build-a-chat-app-with-react-native-3ef8604ebb3c
-//and
+//and https://www.bootdey.com/react-native-snippet/23/Profile-ui-example
 
 import Fire from '../Fire';
 
