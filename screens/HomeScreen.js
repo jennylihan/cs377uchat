@@ -67,4 +67,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 1,
   },
+  getStartedText: {
+    paddingLeft: 15,
+  },
 });

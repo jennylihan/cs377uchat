@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius:30,
     borderBottomWidth: 1,
+    borderBottomWidth: 1,
     width:300,
     height:45,
     marginBottom:20,
     flexDirection: 'row',
     alignItems:'center',
-
     shadowColor: "#808080",
     shadowOffset: {
       width: 0,
@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   inputs:{
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
   btnForgotPassword: {
     height:15,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'flex-end',
     marginBottom:10,
     width:300,
@@ -167,7 +166,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.50,
     shadowRadius: 12.35,
-
     elevation: 19,
   },
   loginText: {
@@ -183,6 +181,6 @@ const styles = StyleSheet.create({
   },
   btnText:{
     color:"white",
-    fontWeight:'bold'
-  }
+    fontWeight:'bold',
+  },
 });

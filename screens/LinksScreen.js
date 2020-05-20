@@ -13,17 +13,16 @@ export default class LinksScreen extends Component {
     return (
       <View style={styles.container}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar3.png'}}/>
           <View style={styles.body}>
+          <Text style={styles.name}>Jane Doe</Text>
+          <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}>John Doe</Text>
-              <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
-
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text>Zoom</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Skype</Text>
+              <Text>Skype</Text>
               </TouchableOpacity>
             </View>
         </View>
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     padding:30,
   },
   name:{
-    fontSize:28,
+    fontSize:18,
     color: "#696969",
     fontWeight: "600"
   },

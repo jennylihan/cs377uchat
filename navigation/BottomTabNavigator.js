@@ -4,7 +4,7 @@ import * as React from 'react';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import ChatScreen1 from '../screens/ChatScreen1';
+import ChatScreen from '../screens/ChatScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import QuestionRooms from '../screens/QuestionRooms';
 
@@ -37,7 +37,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Links"
+        name="Profile"
         component={LinksScreen}
         options={{
           title: 'Profile',
@@ -54,9 +54,9 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'Log In';
-    case 'Links':
-      return 'Links to learn more';
     case 'Chat':
       return 'Chat Rooms';
+    case 'Profile':
+      return 'Profile Page';
   }
 }
