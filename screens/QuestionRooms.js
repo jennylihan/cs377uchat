@@ -17,27 +17,43 @@ class QuestionRooms extends React.Component {
           label="Question 1 Chat Room"
           onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages1'})}
         />
-
         <OptionButton
           icon="ios-chatboxes"
           label="Question 2 Chat Room"
           onPress={() =>
           this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages2'})}
         />
-
         <OptionButton
           icon="ios-chatboxes"
           label="Question 3 Chat Room"
           onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages3'})}
           isLastOption
         />
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 4 Chat Room"
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages4'})}
+          isLastOption
+        />
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 5 Chat Room"
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages5'})}
+          isLastOption
+        />
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Question 6 Chat Room"
+          onPress={() => this.props.navigation.navigate('ChatScreen', {chatRoomName: 'messages6'})}
+          isLastOption
+        />
+
       </ScrollView>
     );
   }
 }
 
 export default QuestionRooms;
-
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
   return (
