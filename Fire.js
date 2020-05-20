@@ -61,6 +61,30 @@ class Fire {
     );
 	};
 
+	updateProfile = async uri => {
+		console.log('got profile to update. uri:' + uri);
+		var userf = firebase.auth().currentUser;
+		// try {
+	    const response = await fetch(uri); //I have no idea what this is
+	    // const blob = await response.blob();
+			const { timestamp: numberStamp, text, user } = snapshot.val();
+			// const { key: _id } = snapshot;
+			const timestamp = new Date(numberStamp);
+			const profile_info = {
+	      // _id,
+	      timestamp,
+	      pname, //how do I get these passed in
+				zoom,
+	      userf,
+	    };
+	    const ref = firebase
+	      .storage()
+	      .ref('profiles')
+	      .child(userf); // changed from: uuid.v4()
+	    const task = ref.push();
+		// }
+	};
+
 	uploadImage = async uri => {
 	  console.log('got image to upload. uri:' + uri);
 	  try {
@@ -105,6 +129,7 @@ class Fire {
 	    alert('Unable to update avatar. You must login first.');
 	  }
 	};
+
 
   get uid() {
     return (firebase.auth().currentUser || {}).uid;

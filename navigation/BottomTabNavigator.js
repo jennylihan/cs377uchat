@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import HomeScreenProfile from '../screens/HomeScreenProfile';
 import LinksScreen from '../screens/LinksScreen';
 import ChatScreen from '../screens/ChatScreen';
 import SignUpScreen from '../screens/SignUpScreen';
