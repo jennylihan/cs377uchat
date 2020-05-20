@@ -4,9 +4,11 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { Title, Subheading, Headline, Card, Button, Paragraph } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   return (
 
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -24,13 +26,13 @@ export default function HomeScreen() {
       <OptionButton
         icon="md-compass"
         label="Class Piazza Forum"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+        onPress={() => WebBrowser.openBrowserAsync('https://piazza.com/class/')}
       />
 
       <OptionButton
         icon="ios-chatboxes"
         label="Ask a question in the Chat Rooms"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+        onPress={() => navigation.navigate('Chat')}
         isLastOption
       />
       </View>
