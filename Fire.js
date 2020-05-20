@@ -41,18 +41,29 @@ class Fire {
             ' name:' +
             user.name
         );
-        var userf = firebase.auth().currentUser;
-        userf.updateProfile({ displayName: user.name }).then(
-          function() {
+        var userf = firebase.auth().currentUser.uid;
+				firebase.database().ref('profiles/' + userf).set({
+			    name: user.name,
+			    email: user.email,
+			    zoom : ''
+			  })
+				.then(function() {
             console.log('Updated displayName successfully. name:' + user.name);
             alert(
               'User ' + user.name + ' was created successfully. Please login.'
             );
-          },
-          function(error) {
-            console.warn('Error update displayName.');
-          }
-        );
+          });
+        // userf.updateProfile({ displayName: user.name }).then(
+        //   function() {
+        //     console.log('Updated displayName successfully. name:' + user.name);
+        //     alert(
+        //       'User ' + user.name + ' was created successfully. Please login.'
+        //     );
+        //   },
+        //   function(error) {
+        //     console.warn('Error update displayName.');
+        //   }
+        // );
       },
       function(error) {
         console.error('got error:' + typeof error + ' string:' + error.message);
@@ -60,6 +71,13 @@ class Fire {
       }
     );
 	};
+
+	updateProfile = async user => {
+
+
+	}
+
+
 
 	uploadImage = async uri => {
 	  console.log('got image to upload. uri:' + uri);
@@ -129,6 +147,19 @@ class Fire {
     };
     return message;
   };
+
+	//
+	// parseProfile = snapshot => {
+	// 	return snapshot;
+	// }
+	//
+	// populate = () => {
+	// 	// var userId = firebase.auth().currentUser.uid;
+	// 	console.log(this.uid);
+	// 	return firebase.database().ref('messages1')
+	// 	.once('value')
+	// 	.then(function(snapshot){this.parseProfile(snapshot)})
+	// }
 
   on = (callback, chatRoomName) => {
 		this.chatRoomName = chatRoomName;

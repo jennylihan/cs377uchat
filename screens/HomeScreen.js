@@ -9,6 +9,7 @@ export default function HomeScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <Text style={styles.getStartedText}>Welcome to Code2Gether </Text>
 
+
       <OptionButton
         icon="md-compass"
         label="Read the React Navigation documentation"

@@ -2,12 +2,30 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   Image,
   TouchableOpacity
 } from 'react-native';
+import Fire from '../Fire';
 
-export default class LinksScreen extends Component {
+export default class UpdateProfileScreen extends Component {
+  state = {
+		name: 'no name',
+	  about: '',
+    zoom: ''
+	};
+
+  onPressUpdate = async () => {
+      const user = {
+        name: this.state.name,
+        about: this.state.about,
+        zoom: this.state.zoom
+      };
+      await Fire.shared.updateProfile(user);
+    };
+
+  onChangeTextName = name => this.setState({ name });
 
   render() {
     return (
@@ -16,21 +34,43 @@ export default class LinksScreen extends Component {
 
           <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar3.png'}}/>
           <View style={styles.body}>
-          
-          <Text style={styles.name}>Jane Doe</Text>
+          <TextInput
+            style={styles.nameInput}
+            onChangeText={this.onChangeTextName}
+            value={this.state.name}
+          />
           <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text>Zoom</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('UpdateProfileScreen')}>
-              <Text>Update Profile</Text>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={this.onPressUpdate}
+                >
+              <Text>Save Profile Changes</Text>
               </TouchableOpacity>
             </View>
         </View>
       </View>
     );
   }
+
+  componentDidMount() {
+    // console.log('!!!!!!!');
+    // console.log(Fire.shared.populate());
+  }
+
+  //   Fire.shared.on(message =>
+  //     this.setState(previousState => ({
+  //       messages: GiftedChat.append(previousState.messages, message),
+  //     }))
+  //   ,JSON.stringify(this.props.route.params.chatRoomName));
+  // }
+  // componentWillUnmount() {
+  //   Fire.shared.off();
+  // }
+
 }
 
 const styles = StyleSheet.create({
