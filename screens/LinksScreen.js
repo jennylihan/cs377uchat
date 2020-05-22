@@ -7,7 +7,26 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import Fire from '../Fire';
+
 export default class LinksScreen extends Component {
+  state = {
+    zoom: '',
+    about: '',
+  }
+
+  get user() {
+    return {
+      name: Fire.shared.name,
+      _id: Fire.shared.uid,
+    };
+  }
+
+  get profile(){
+    return {
+      email: Fire.shared.profile,
+    };
+  }
 
   render() {
     return (
@@ -16,8 +35,9 @@ export default class LinksScreen extends Component {
 
           <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar3.png'}}/>
           <View style={styles.body}>
-          
-          <Text style={styles.name}>Jane Doe</Text>
+
+          <Text style={styles.name} >Jane Doe </Text>
+
           <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer}>

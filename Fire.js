@@ -148,6 +148,18 @@ class Fire {
     return message;
   };
 
+	get profile(){
+		var userId = firebase.auth().currentUser.uid;
+		return firebase.database().ref('/profiles/' + userId).once('value').then(function(snapshot) {
+		  var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
+			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided';
+			var about = (snapshot.val() && snapshot.val().about) || 'No about info specified';
+			console.log(email);
+			//this works, now I just need to populate properly
+		  return email;
+		});
+	};
+
 	//
 	// parseProfile = snapshot => {
 	// 	return snapshot;

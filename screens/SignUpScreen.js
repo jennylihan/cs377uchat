@@ -11,7 +11,8 @@ export default class Signup extends React.Component {
 		name: 'no name',
 		email: 'test@live.com',
 		password: '123456',
-		avatar: ''
+		avatar: '',
+		sunet: ''
 	};
 
 	onPressCreate = async () => {
@@ -19,7 +20,8 @@ export default class Signup extends React.Component {
 			const user = {
 				name: this.state.name,
 				email: this.state.email,
-				password: this.state.password
+				password: this.state.password,
+				sunet: this.state.sunet
 				//add more props & match this in Fire.js
 			};
 			await Fire.shared.createAccount(user);
