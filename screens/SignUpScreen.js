@@ -33,6 +33,8 @@ export default class Signup extends React.Component {
 	onChangeTextEmail = email => this.setState({ email });
 	onChangeTextPassword = password => this.setState({ password });
 	onChangeTextName = name => this.setState({ name });
+	onChangeTextSunet = sunet => this.setState({ sunet });
+
 
 	onImageUpload = async () => {
 		const { status: cameraRollPerm } = await Permissions.askAsync(
@@ -104,6 +106,12 @@ export default class Signup extends React.Component {
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextName}
 					value={this.state.name}
+				/>
+				<Text style={styles.title}>Zoom link (SUNet ID before the @ sign):</Text>
+				<TextInput
+					style={styles.nameInput}
+					onChangeText={this.onChangeTextSunet}
+					value={this.state.zoom}
 				/>
 				<Button
 					title="Signup"

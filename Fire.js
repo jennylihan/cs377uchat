@@ -45,7 +45,7 @@ class Fire {
 				firebase.database().ref('profiles/' + userf).set({
 			    name: user.name,
 			    email: user.email,
-			    zoom : ''
+			    sunet : user.sunet,
 			  })
 				.then(function() {
             console.log('Updated displayName successfully. name:' + user.name);
@@ -148,15 +148,37 @@ class Fire {
     return message;
   };
 
-	get profile(){
+	get email(){
 		var userId = firebase.auth().currentUser.uid;
 		return firebase.database().ref('/profiles/' + userId).once('value').then(function(snapshot) {
-		  var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
+		  var email = (snapshot.val() && snapshot.val().email) || 'Anonymous Email';
 			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided';
-			var about = (snapshot.val() && snapshot.val().about) || 'No about info specified';
-			console.log(email);
+			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No about info specified';
+			// console.log(email);
+			// console.log(sunet);
+			// var profile = {
+			// 	email,
+			// 	sunet
+			// };
 			//this works, now I just need to populate properly
 		  return email;
+		});
+	};
+
+	get sunet(){
+		var userId = firebase.auth().currentUser.uid;
+		return firebase.database().ref('/profiles/' + userId).once('value').then(function(snapshot) {
+		  // var email = (snapshot.val() && snapshot.val().email) || 'Anonymous Email';
+			var sunet = (snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided';
+			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No about info specified';
+			// console.log(email);
+			console.log(sunet);
+			// var profile = {
+			// 	email,
+			// 	sunet
+			// };
+			//this works, now I just need to populate properly
+		  return sunet.JSON;
 		});
 	};
 

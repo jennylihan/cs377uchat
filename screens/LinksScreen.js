@@ -11,8 +11,8 @@ import Fire from '../Fire';
 
 export default class LinksScreen extends Component {
   state = {
-    zoom: '',
-    about: '',
+    email: '',
+    sunet: '',
   }
 
   get user() {
@@ -23,9 +23,10 @@ export default class LinksScreen extends Component {
   }
 
   get profile(){
-    return {
-      email: Fire.shared.profile,
-    };
+    // console.log("fire " + Fire.shared.email);
+    console.log("fire " + Fire.shared.sunet);
+    // this.setState({email: Fire.shared.email),
+    this.setState({sunet: Fire.shared.sunet});
   }
 
   render() {
@@ -41,7 +42,7 @@ export default class LinksScreen extends Component {
           <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Zoom</Text>
+                <Text>Email: {this.profile}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('UpdateProfileScreen')}>
               <Text>Update Profile</Text>
