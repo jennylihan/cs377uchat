@@ -13,6 +13,8 @@ export default class LinksScreen extends Component {
   state = {
     email: '',
     sunet: '',
+    name: '',
+    profile: '',
   }
 
   get user() {
@@ -31,12 +33,12 @@ export default class LinksScreen extends Component {
           <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar3.png'}}/>
           <View style={styles.body}>
 
-          <Text style={styles.name} >Jane Doe </Text>
+          <Text style={styles.name} >Name: {this.state.name} </Text>
 
-          <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
+          <Text style={styles.description}>Profile: {this.state.profile} </Text>
             <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Sunet: {this.state.sunet}</Text>
+                <Text>SUNet ID: {this.state.sunet}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('UpdateProfileScreen')}>
               <Text>Update Profile</Text>
@@ -49,8 +51,12 @@ export default class LinksScreen extends Component {
   componentDidMount() {
     //Pings firebase to get the sunet (stored in result)
     //and in the callback, we set the sunet in the state!
-    Fire.shared.getsunet(result =>
-      this.setState({sunet:result}));
+    Fire.shared.getsunet(sunet_result =>
+      this.setState({sunet:sunet_result}));
+      Fire.shared.getname(name_result =>
+        this.setState({name:name_result}));
+        Fire.shared.getprofile(profile_result =>
+          this.setState({profile:profile_result}));
   }
 }
 

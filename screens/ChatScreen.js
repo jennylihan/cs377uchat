@@ -25,6 +25,8 @@ export default class Chatscreen extends Component {
   state = {
     messages: [],
     modalOpen: false,
+    nameother: '',
+    //add additional other users and emails
   }
 
   get user() {
@@ -34,12 +36,24 @@ export default class Chatscreen extends Component {
     };
   }
 
+  // //do I need this?
+  //   get otheruser() {
+  //     return {
+  //       nameother: Fire.shared.name,
+  //       _idother: Fire.shared.uid,
+  //     };
+  //   }
+
   handlePressClose() {
     this.setState({modalOpen: false})
   }
 
-  handlePressOpen() {
+  handlePressOpen(user) {
     this.setState({modalOpen: true})
+    //do the getsunet/getemail stuff
+    console.log(user)
+    Fire.shared.getnameother(name_result =>
+      this.setState({nameother:name_result}), user);
   }
 
   render() {
@@ -60,7 +74,7 @@ export default class Chatscreen extends Component {
             </View>
 
               <View style={styles.bodyContent}>
-                <Text style={styles.name}>MB</Text>
+                <Text style={styles.name}>Name: {this.state.nameother} </Text>
                 <Text style={styles.info}>Junior</Text>
                 <Text style={styles.description}>MS&E student looking for a partner for psets</Text>
 
@@ -82,8 +96,8 @@ export default class Chatscreen extends Component {
           messages={this.state.messages}
           onSend={Fire.shared.send}
           user={this.user}
-          onPressAvatar = {() => this.handlePressOpen()}
-
+          onPressAvatar = {(user) => this.handlePressOpen(user)}
+          //this.props.current.currentMessage.user
         />
       </View>
     );

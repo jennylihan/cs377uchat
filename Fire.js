@@ -46,6 +46,7 @@ class Fire {
 			    name: user.name,
 			    email: user.email,
 			    sunet : user.sunet,
+					profile: user.profile,
 			  })
 				.then(function() {
             console.log('Updated displayName successfully. name:' + user.name);
@@ -169,8 +170,27 @@ class Fire {
 	getsunet = (callback) => {
 		var userId = firebase.auth().currentUser.uid;
 		firebase.database().ref('/profiles/' + userId)
-			.once('value', snapshot => callback((snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided'));
+			.once('value', snapshot => callback((snapshot.val() && snapshot.val().sunet) || 'No SUnet provided'));
 		}
+
+		getname = (callback) => {
+			var userId = firebase.auth().currentUser.uid;
+			firebase.database().ref('/profiles/' + userId)
+				.once('value', snapshot => callback((snapshot.val() && snapshot.val().name) || 'No name provided'));
+			}
+
+			getprofile = (callback) => {
+				var userId = firebase.auth().currentUser.uid;
+				firebase.database().ref('/profiles/' + userId)
+					.once('value', snapshot => callback((snapshot.val() && snapshot.val().profile) || 'No profile provided'));
+				}
+
+				//function to be called in chatscreen for other profile
+				getnameother = (callback, otherUser) => {
+					var userId = otherUser._id;
+					firebase.database().ref('/profiles/' + userId)
+						.once('value', snapshot => callback((snapshot.val() && snapshot.val().name) || 'No name provided'));
+					}
 
 	//
 	// parseProfile = snapshot => {

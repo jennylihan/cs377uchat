@@ -8,7 +8,7 @@ import { StyleSheet, Text, View,TextInput,Button,ImageEditor } from 'react-nativ
 
 export default class Signup extends React.Component {
 	state = {
-		name: 'no name',
+		name: '',
 		email: 'test@live.com',
 		password: '123456',
 		avatar: '',
@@ -21,7 +21,8 @@ export default class Signup extends React.Component {
 				name: this.state.name,
 				email: this.state.email,
 				password: this.state.password,
-				sunet: this.state.sunet
+				sunet: this.state.sunet,
+				profile: this.state.profile
 				//add more props & match this in Fire.js
 			};
 			await Fire.shared.createAccount(user);
@@ -34,6 +35,7 @@ export default class Signup extends React.Component {
 	onChangeTextPassword = password => this.setState({ password });
 	onChangeTextName = name => this.setState({ name });
 	onChangeTextSunet = sunet => this.setState({ sunet });
+	onChangeTextProfile = profile => this.setState({ profile });
 
 
 	onImageUpload = async () => {
@@ -112,6 +114,12 @@ export default class Signup extends React.Component {
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextSunet}
 					value={this.state.zoom}
+				/>
+				<Text style={styles.title}>Introduce yourself (working style, prior courses, etc):</Text>
+				<TextInput
+					style={styles.nameInput}
+					onChangeText={this.onChangeTextProfile}
+					value={this.state.profile}
 				/>
 				<Button
 					title="Signup"
