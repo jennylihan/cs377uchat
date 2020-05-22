@@ -42,13 +42,16 @@ class Fire {
             user.name
         );
         var userf = firebase.auth().currentUser.uid;
+				var userd = firebase.auth().currentUser;
+				userd.updateProfile({ displayName: user.name });
 				firebase.database().ref('profiles/' + userf).set({
 			    name: user.name,
 			    email: user.email,
-			    zoom : ''
+			    sunet : user.sunet,
+					profile: user.profile,
 			  })
 				.then(function() {
-            console.log('Updated displayName successfully. name:' + user.name);
+            console.log('Updated name successfully. name:' + user.name);
             alert(
               'User ' + user.name + ' was created successfully. Please login.'
             );
@@ -148,17 +151,54 @@ class Fire {
     return message;
   };
 
-	get profile(){
+	get email(){
 		var userId = firebase.auth().currentUser.uid;
 		return firebase.database().ref('/profiles/' + userId).once('value').then(function(snapshot) {
-		  var email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
+		  var email = (snapshot.val() && snapshot.val().email) || 'Anonymous Email';
 			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided';
-			var about = (snapshot.val() && snapshot.val().about) || 'No about info specified';
-			console.log(email);
+			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No about info specified';
+			// console.log(email);
+			// console.log(sunet);
+			// var profile = {
+			// 	email,
+			// 	sunet
+			// };
 			//this works, now I just need to populate properly
 		  return email;
 		});
 	};
+
+	//get the sunet from the database and then use the callback in LinksScreen.js!
+	getsunet = (callback) => {
+		var userId = firebase.auth().currentUser.uid;
+		firebase.database().ref('/profiles/' + userId)
+			.once('value', snapshot => callback((snapshot.val() && snapshot.val().sunet) || 'No SUnet provided'));
+		}
+
+		getname = (callback) => {
+			var userId = firebase.auth().currentUser.uid;
+			firebase.database().ref('/profiles/' + userId)
+				.once('value', snapshot => callback((snapshot.val() && snapshot.val().name) || 'No name provided'));
+			}
+
+			getprofile = (callback) => {
+				var userId = firebase.auth().currentUser.uid;
+				firebase.database().ref('/profiles/' + userId)
+					.once('value', snapshot => callback((snapshot.val() && snapshot.val().profile) || 'No profile provided'));
+				}
+
+				//function to be called in chatscreen for other profile
+				getnameother = (callback, otherUser) => {
+					var userId = otherUser._id;
+					firebase.database().ref('/profiles/' + userId)
+						.once('value', snapshot => callback((snapshot.val() && snapshot.val().name) || 'No name provided'));
+					}
+
+					getprofileother = (callback, otherUser) => {
+						var userId = otherUser._id;
+						firebase.database().ref('/profiles/' + userId)
+							.once('value', snapshot => callback((snapshot.val() && snapshot.val().profile) || 'No profile provided'));
+						}
 
 	//
 	// parseProfile = snapshot => {
@@ -192,6 +232,8 @@ class Fire {
         user,
         timestamp: this.timestamp,
       };
+			// console.log(message.user.name)
+			// console.log(message.text)
       this.append(message);
     }
   };
