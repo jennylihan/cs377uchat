@@ -42,6 +42,8 @@ class Fire {
             user.name
         );
         var userf = firebase.auth().currentUser.uid;
+				var userd = firebase.auth().currentUser;
+				userd.updateProfile({ displayName: user.name });
 				firebase.database().ref('profiles/' + userf).set({
 			    name: user.name,
 			    email: user.email,
@@ -49,7 +51,7 @@ class Fire {
 					profile: user.profile,
 			  })
 				.then(function() {
-            console.log('Updated displayName successfully. name:' + user.name);
+            console.log('Updated name successfully. name:' + user.name);
             alert(
               'User ' + user.name + ' was created successfully. Please login.'
             );
@@ -192,6 +194,12 @@ class Fire {
 						.once('value', snapshot => callback((snapshot.val() && snapshot.val().name) || 'No name provided'));
 					}
 
+					getprofileother = (callback, otherUser) => {
+						var userId = otherUser._id;
+						firebase.database().ref('/profiles/' + userId)
+							.once('value', snapshot => callback((snapshot.val() && snapshot.val().profile) || 'No profile provided'));
+						}
+
 	//
 	// parseProfile = snapshot => {
 	// 	return snapshot;
@@ -224,6 +232,8 @@ class Fire {
         user,
         timestamp: this.timestamp,
       };
+			// console.log(message.user.name)
+			// console.log(message.text)
       this.append(message);
     }
   };
