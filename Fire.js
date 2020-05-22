@@ -165,22 +165,12 @@ class Fire {
 		});
 	};
 
-	get sunet(){
+	//get the sunet from the database and then use the callback in LinksScreen.js!
+	getsunet = (callback) => {
 		var userId = firebase.auth().currentUser.uid;
-		return firebase.database().ref('/profiles/' + userId).once('value').then(function(snapshot) {
-		  // var email = (snapshot.val() && snapshot.val().email) || 'Anonymous Email';
-			var sunet = (snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided';
-			// var sunet = (snapshot.val() && snapshot.val().sunet) || 'No about info specified';
-			// console.log(email);
-			console.log(sunet);
-			// var profile = {
-			// 	email,
-			// 	sunet
-			// };
-			//this works, now I just need to populate properly
-		  return sunet.JSON;
-		});
-	};
+		firebase.database().ref('/profiles/' + userId)
+			.once('value', snapshot => callback((snapshot.val() && snapshot.val().sunet) || 'No SUnet Provided'));
+		}
 
 	//
 	// parseProfile = snapshot => {

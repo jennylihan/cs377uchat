@@ -22,12 +22,6 @@ export default class LinksScreen extends Component {
     };
   }
 
-  get profile(){
-    // console.log("fire " + Fire.shared.email);
-    console.log("fire " + Fire.shared.sunet);
-    // this.setState({email: Fire.shared.email),
-    this.setState({sunet: Fire.shared.sunet});
-  }
 
   render() {
     return (
@@ -42,7 +36,7 @@ export default class LinksScreen extends Component {
           <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Email: {this.profile}</Text>
+                <Text>Sunet: {this.state.sunet}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('UpdateProfileScreen')}>
               <Text>Update Profile</Text>
@@ -52,7 +46,15 @@ export default class LinksScreen extends Component {
       </View>
     );
   }
+  componentDidMount() {
+    //Pings firebase to get the sunet (stored in result)
+    //and in the callback, we set the sunet in the state!
+    Fire.shared.getsunet(result =>
+      this.setState({sunet:result}));
+  }
 }
+
+
 
 const styles = StyleSheet.create({
   header:{
