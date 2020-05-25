@@ -1,106 +1,254 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
-import { Title, Subheading, Headline, Card, Button, Paragraph } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+//https://www.bootdey.com/react-native-snippet/56/Craigslist-Mobile-App
+//https://www.bootdey.com/react-native-snippet/37/Cards-with-overlay
+
+import React, { Component } from 'react';
 import * as Analytics from 'expo-firebase-analytics';
+import { useNavigation } from '@react-navigation/native';
+import * as WebBrowser from 'expo-web-browser';
+
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Alert,
+  ScrollView,
+  FlatList,
+  Button,
+  TouchableHighlight
+} from 'react-native';
+
+export default class HomeScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {id:"1", title: "Welcome to Code2Gether",  time:"It's Week 8!", image:"https://lorempixel.com/400/200/nature/5/"} ,
+        {id:"2", title: "PSET #7 is out ",  time:"3 days and 4hrs left",    image:"https://lorempixel.com/400/200/nature/4/"},
+      ],
+      data2: [
+        {id:1,  name: "Class Piazza Forum",   image:"https://img.icons8.com/ios/50/000000/city-square.png"},
+        {id:2,  name: "Chat about PSET",   image:"https://img.icons8.com/ios/50/000000/speech-bubble-with-dots.png"},
+      ]
+    };
+  }
 
 
-export default function HomeScreen() {
-  const navigation = useNavigation();
-  return (
+  render() {
+    const { navigation } = this.props;
+    return (
+      <View style={styles.container}>
+        <FlatList style={styles.list}
+          data={this.state.data}
+          keyExtractor= {(item) => {
+            return item.id;
+          }}
 
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-    <View style={styles.header}>
-    <Title> Welcome to Code2Gether </Title>
-    <Subheading> It's Week 7 </Subheading>
-    <View style={styles.container}>
-      <Headline> Problem Set 4 is due: </Headline>
-      <Headline> May 22nd at 11:59pm</Headline>
+          renderItem={(post) => {
+            const item = post.item;
+            return (
+              <TouchableOpacity>
+                <View style={styles.card}>
+
+                  <Image style={styles.cardImage} source={{uri:item.image}}/>
+                  <View style={styles.cardContent}>
+                    <View>
+                      <Text style={styles.title}>{item.title}</Text>
+                      <Text style={styles.time}>{item.time}</Text>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            )
+          }}/>
+
+          <TouchableOpacity style={styles.card2}>
+            <Image style={styles.image2} source={{uri: this.state.data2[0].image}}/>
+            <View style={styles.cardContent2}>
+              <Text style={styles.name2}>{this.state.data2[0].name}</Text>
+              <TouchableOpacity
+              style={styles.followButton2}
+              onPress={() => {
+                Analytics.logEvent('PiazzaButton', {
+                  screen: 'home',
+                  purpose: 'User clicks on Piazza external link',
+                });
+                WebBrowser.openBrowserAsync('https://piazza.com/class/')}}
+              >
+                <Text style={styles.followButtonText2}>Explore now</Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={styles.card2}>
+            <Image style={styles.image2} source={{uri: this.state.data2[1].image}}/>
+            <View style={styles.cardContent2}>
+              <Text style={styles.name2}>{this.state.data2[1].name}</Text>
+              <TouchableOpacity
+              style={styles.followButton2}
+              onPress={() => {
+                Analytics.logEvent('AskQuestionButton', {
+                  screen: 'home',
+                  purpose: 'User clicks on "Ask a question in the Chat Rooms"',
+                });
+                navigation.navigate('Chat')}}
+              >
+                <Text style={styles.followButtonText2}>Explore now</Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+
+
       </View>
-    </View>
-
-
-    <View style={styles.container}>
-      <OptionButton
-        icon="md-compass"
-        label="Class Piazza Forum"
-        onPress={() => {
-          Analytics.logEvent('PiazzaButton', {
-            screen: 'home',
-            purpose: 'User clicks on Piazza external link',
-          });
-          WebBrowser.openBrowserAsync('https://piazza.com/class/')}}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question in the Chat Rooms"
-        onPress={() => {
-          Analytics.logEvent('AskQuestionButton', {
-            screen: 'home',
-            purpose: 'User clicks on "Ask a question in the Chat Rooms"',
-          });
-          navigation.navigate('Chat')}}
-        isLastOption
-      />
-      </View>
-    </ScrollView>
-
-  );
-}
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
-      </View>
-    </RectButton>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "#00BFFF",
-    height:200,
-    textAlign: 'center'
+  container:{
+    backgroundColor:"#B0E0E6",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
-    textAlign: 'center'
+  list: {
   },
-  contentContainer: {
+
+  /******** card **************/
+  card:{
+    margin: 0,
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: "#DCDCDC",
+    backgroundColor: "#ebf0f7",
+  },
+  cardHeader: {
+    borderTopLeftRadius: 1,
+    borderTopRightRadius: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cardContent: {
+    paddingVertical: 12.5,
+    paddingHorizontal: 16,
+    //overlay efect
+    height: 200,
+    width: null,
+    position: 'absolute',
+    zIndex: 100,
+    left: 0,
+    right: 0,
+    backgroundColor: 'transparent'
+  },
+  cardFooter:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingTop: 15,
+    paddingBottom: 0,
+    paddingVertical: 7.5,
+    paddingHorizontal: 0
   },
-  optionIconContainer: {
-    marginRight: 12,
+  cardImage:{
+    height: 150,
+    width: null,
   },
-  option: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: '#ededed',
+  /******** card components **************/
+  title:{
+    fontSize:22,
+    color: "#ffffff",
+    marginTop: 10,
+    fontWeight:'bold'
   },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
+  time:{
+    fontSize:13,
+    color: "#ffffff",
+    marginTop: 5
   },
-  optionText: {
-    fontSize: 15,
-    alignSelf: 'flex-start',
-    marginTop: 1,
+  icon: {
+    width:25,
+    height:25,
   },
-  getStartedText: {
-    paddingLeft: 15,
+  buttonContainer: {
+  height:45,
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom:20,
+  width:250,
+  borderRadius:30,
+},
+loginButton: {
+  backgroundColor: "#3498db",
+},
+buttonText: {
+  color: "#FFFFFF",
+  fontSize:20,
+},
+
+
+
+
+cardContent2: {
+    marginLeft:20,
+    marginTop:10
+  },
+  image2:{
+    width:90,
+    height:90,
+    borderRadius:45,
+    borderWidth:2,
+    borderColor:"#ebf0f7"
+  },
+
+  card2:{
+    shadowColor: '#00000021',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12,
+
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop:20,
+    backgroundColor:"white",
+    padding: 10,
+    flexDirection:'row',
+    borderRadius:30,
+  },
+
+  name2:{
+    fontSize:18,
+    flex:1,
+    alignSelf:'center',
+    color:"#3399ff",
+    fontWeight:'bold'
+  },
+  count2:{
+    fontSize:14,
+    flex:1,
+    alignSelf:'center',
+    color:"#6666ff"
+  },
+  followButton2: {
+    marginTop:10,
+    height:35,
+    width:100,
+    padding:10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:30,
+    backgroundColor: "white",
+    borderWidth:1,
+    borderColor:"#dcdcdc",
+  },
+  followButtonText2:{
+    color: "#dcdcdc",
+    fontSize:12,
   },
 });

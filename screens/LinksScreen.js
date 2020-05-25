@@ -1,3 +1,5 @@
+// https://www.bootdey.com/react-native-snippet/23/Profile-ui-example
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
