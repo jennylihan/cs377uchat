@@ -25,11 +25,11 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="Chat Rooms" component={BottomTabNavigator} />
-            <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="ChatScreen" component={ChatScreen} />
-            <Stack.Screen name="UpdateProfileScreen" component={UpdateProfileScreen} />
+            <Stack.Screen name="Login Screen" component={LoginScreen} />
+            <Stack.Screen name="Home" component={BottomTabNavigator} />
+            <Stack.Screen name="Sign Up" component={SignUpScreen} />
+            <Stack.Screen name="Chat Screen" component={ChatScreen} />
+            <Stack.Screen name="Update Profile" component={UpdateProfileScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

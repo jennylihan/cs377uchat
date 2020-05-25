@@ -51,7 +51,7 @@ export default class LinksScreen extends Component {
                   screen: 'Profile',
                   purpose: 'User clicks on "Update Profile" button',
                 });
-                this.props.navigation.navigate('UpdateProfileScreen')}}>
+                this.props.navigation.navigate('Update Profile')}}>
               <Text>Update Profile</Text>
               </TouchableOpacity>
         </View>
@@ -60,14 +60,18 @@ export default class LinksScreen extends Component {
     );
   }
   componentDidMount() {
+    // Analytics.logEvent('BackButton', {
+    //   screen: 'Profile',
+    //   purpose: 'User clicks on "LoginScreen" button',
+    // });
     //Pings firebase to get the sunet (stored in result)
     //and in the callback, we set the sunet in the state!
     Fire.shared.getname(sunet_result =>
       this.setState({sunet:sunet_result}));
-      Fire.shared.getname(name_result =>
-        this.setState({name:name_result}));
-        Fire.shared.getprofile(profile_result =>
-          this.setState({profile:profile_result}));
+    Fire.shared.getname(name_result =>
+      this.setState({name:name_result}));
+    Fire.shared.getprofile(profile_result =>
+      this.setState({profile:profile_result}));
   }
 }
 

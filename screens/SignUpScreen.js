@@ -96,30 +96,35 @@ export default class Signup extends React.Component {
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextEmail}
 					value={this.state.email}
+					placeholder="Your email"
 				/>
 				<Text style={styles.title}>Password:</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextPassword}
 					value={this.state.password}
+					placeholder="Your password"
 				/>
 				<Text style={styles.title}>Name:</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextName}
 					value={this.state.name}
+					placeholder="Your name"
 				/>
 				<Text style={styles.title}>Zoom link (SUNet ID before the @ sign):</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextSunet}
 					value={this.state.zoom}
+					placeholder="Your SUNet ID"
 				/>
 				<Text style={styles.title}>Introduce yourself (working style, prior courses, etc):</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextProfile}
 					value={this.state.profile}
+					placeholder="Your introduction"
 				/>
 				<Button
 					title="Signup"
@@ -144,7 +149,7 @@ export default class Signup extends React.Component {
 							screen: 'SignUp',
 							purpose: 'User clicks on "Back to Log In" text',
 						});
-						this.props.navigation.navigate('LoginScreen')}}
+						this.props.navigation.navigate('Login Screen')}}
         />
 			</View>
 		);

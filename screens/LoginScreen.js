@@ -53,7 +53,7 @@ export default class Login extends Component {
       screen: 'Login',
       purpose: 'User clicks login and succeeds.',
     });
-    this.props.navigation.navigate('Chat Rooms', {
+    this.props.navigation.navigate('Home', {
       email: this.state.email,
       avatar: this.state.avatar
     });
@@ -109,7 +109,7 @@ export default class Login extends Component {
             screen: 'login',
             purpose: 'User clicks register button from login screen.',
           });
-          this.props.navigation.navigate('SignUp')}}>
+          this.props.navigation.navigate('Sign Up')}}>
             <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
