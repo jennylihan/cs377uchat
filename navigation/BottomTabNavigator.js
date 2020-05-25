@@ -25,7 +25,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Home',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) =>
+          {Analytics.logEvent('HomeNavButton', {
+            purpose: 'User clicks on Home from bottom tab navigator',
+          }),
+          <TabBarIcon focused={focused} name="md-code-working" />},
         }}
       />
       <BottomTab.Screen
@@ -33,7 +37,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={QuestionRooms}
         options={{
           title: 'Chat Rooms',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-chatboxes" />,
+          tabBarIcon: ({ focused }) =>
+          {Analytics.logEvent('ChatNavButton', {
+            purpose: 'User clicks on Chat Rooms from bottom tab navigator',
+          }),
+          <TabBarIcon focused={focused} name="ios-chatboxes" />},
         }}
       />
       <BottomTab.Screen
@@ -41,7 +49,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={LinksScreen}
         options={{
           title: 'Profile',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          tabBarIcon: ({ focused }) =>
+          {Analytics.logEvent('ProfileNavButton', {
+            purpose: 'User clicks on Profile from bottom tab navigator',
+          }),
+          <TabBarIcon focused={focused} name="md-book" />},
         }}
       />
     </BottomTab.Navigator>
