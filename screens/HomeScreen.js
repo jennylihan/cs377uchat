@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { Title, Subheading, Headline, Card, Button, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import * as Analytics from 'expo-firebase-analytics';
 
 
 export default function HomeScreen() {
@@ -26,13 +27,23 @@ export default function HomeScreen() {
       <OptionButton
         icon="md-compass"
         label="Class Piazza Forum"
-        onPress={() => WebBrowser.openBrowserAsync('https://piazza.com/class/')}
+        onPress={() => {
+          Analytics.logEvent('PiazzaButton', {
+            screen: 'home',
+            purpose: 'User clicks on Piazza external link',
+          });
+          WebBrowser.openBrowserAsync('https://piazza.com/class/')}}
       />
 
       <OptionButton
         icon="ios-chatboxes"
         label="Ask a question in the Chat Rooms"
-        onPress={() => navigation.navigate('Chat')}
+        onPress={() => {
+          Analytics.logEvent('AskQuestionButton', {
+            screen: 'home',
+            purpose: 'User clicks on "Ask a question in the Chat Rooms"',
+          });
+          navigation.navigate('Chat')}}
         isLastOption
       />
       </View>

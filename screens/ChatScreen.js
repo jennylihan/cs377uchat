@@ -11,6 +11,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
 import { MonoText } from '../components/StyledText';
 import { MaterialIcons } from '@expo/vector-icons';
+import * as Analytics from 'expo-firebase-analytics';
+
 
 type Props = {
   name?: string,
@@ -63,17 +65,32 @@ export default class Chatscreen extends Component {
               <MaterialIcons
                 name='close'
                 size={100}
-                onPress = {() => this.handlePressClose()}
+                onPress = {() => {
+                  Analytics.logEvent('CloseProfile', {
+                    screen: 'ChatRoom',
+                    purpose: 'User closes the profile of another user after clicking their avatar',
+                  });
+                  this.handlePressClose()}}
               />
               <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
             </View>
               <View style={styles.bodyContent}>
                 <Text style={styles.name}> {this.state.nameother} </Text>
                 <Text style={styles.description}> {this.state.profileother} </Text>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                  Analytics.logEvent('CallUser', {
+                    screen: 'ChatRoom',
+                    purpose: 'User clicks button to call another user.',
+                  });
+                }}>
                   <Text>Call</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                  Analytics.logEvent('ZoomUser', {
+                    screen: 'ChatRoom',
+                    purpose: 'User clicks button to zoom another user.',
+                  });
+                }}>
                   <Text>Zoom</Text>
                 </TouchableOpacity>
                 </View>
@@ -90,7 +107,12 @@ export default class Chatscreen extends Component {
           showAvatarForEveryMessage={true}
           renderAvatarOnTop={true}
 
-          onPressAvatar = {(user) => this.handlePressOpen(user)}
+          onPressAvatar = {(user) => {
+            Analytics.logEvent('ClickAvatar', {
+              screen: 'ChatRoom',
+              purpose: 'User clicks on the avatar of another user within a chat room',
+            });
+            this.handlePressOpen(user)}}
           //this.props.current.currentMessage.user
         />
       </View>

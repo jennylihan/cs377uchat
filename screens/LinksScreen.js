@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import * as Analytics from 'expo-firebase-analytics';
 
 
 
@@ -37,10 +38,20 @@ export default class LinksScreen extends Component {
           <View style={styles.bodyContent}>
             <Text style={styles.name}>{this.state.name}</Text>
             <Text style={styles.description}>{this.state.profile}</Text>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                Analytics.logEvent('SUNetIDButton', {
+                  screen: 'Profile',
+                  purpose: 'User clicks on "SUNet ID" button',
+                });
+              }}>
                 <Text>SUNet ID: {this.state.sunet}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('UpdateProfileScreen')}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                Analytics.logEvent('UpdateProfileButton', {
+                  screen: 'Profile',
+                  purpose: 'User clicks on "Update Profile" button',
+                });
+                this.props.navigation.navigate('UpdateProfileScreen')}}>
               <Text>Update Profile</Text>
               </TouchableOpacity>
         </View>

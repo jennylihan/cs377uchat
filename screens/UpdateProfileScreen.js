@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Fire from '../Fire';
+import * as Analytics from 'expo-firebase-analytics';
 
 export default class UpdateProfileScreen extends Component {
   state = {
@@ -41,13 +42,21 @@ export default class UpdateProfileScreen extends Component {
           />
           <Text style={styles.description}>Laorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an.</Text>
             <View style={styles.bodyContent}>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                Analytics.logEvent('UserZoomButton', {
+                  screen: 'UpdateProfile',
+                  purpose: 'User clicks on "Zoom" button',
+                });
+              }}>
                 <Text>Zoom</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={this.onPressUpdate}
-                >
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                Analytics.logEvent('SaveProfileChangesButton', {
+                  screen: 'UpdateProfile',
+                  purpose: 'User clicks on "Save Profile Changes" button',
+                });
+                this.onPressUpdate;
+              }}>
               <Text>Save Profile Changes</Text>
               </TouchableOpacity>
             </View>

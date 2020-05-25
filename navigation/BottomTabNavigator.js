@@ -7,7 +7,7 @@ import LinksScreen from '../screens/LinksScreen';
 import ChatScreen from '../screens/ChatScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import QuestionRooms from '../screens/QuestionRooms';
-
+import * as Analytics from 'expo-firebase-analytics';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';

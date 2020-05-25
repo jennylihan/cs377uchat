@@ -2,6 +2,7 @@
 //The rest of the code was adapted from https://blog.expo.io/how-to-build-a-chat-app-with-react-native-3ef8604ebb3c
 
 import firebase from 'firebase';
+import * as Analytics from 'expo-firebase-analytics';
 
 class Fire {
 	constructor() {
@@ -35,6 +36,10 @@ class Fire {
     .createUserWithEmailAndPassword(user.email, user.password)
     .then(
       function() {
+				Analytics.logEvent('SignupSucceeded', {
+					screen: 'SignUp',
+					purpose: 'User successfully created account',
+				});
         console.log(
           'created user successfully. User email:' +
             user.email +
@@ -51,7 +56,7 @@ class Fire {
 					profile: user.profile,
 			  })
 				.then(function() {
-            console.log('Updated name successfully. name:' + user.name);
+            // console.log('Updated name successfully. name:' + user.name);
             alert(
               'User ' + user.name + ' was created successfully. Please login.'
             );
@@ -69,7 +74,11 @@ class Fire {
         // );
       },
       function(error) {
-        console.error('got error:' + typeof error + ' string:' + error.message);
+        // console.error('got error:' + typeof error + ' string:' + error.message);
+				Analytics.logEvent('SignupFailed', {
+					screen: 'SignUp',
+					purpose: 'User failed to successfully create account',
+				});
         alert('Create account failed. Error: ' + error.message);
       }
     );

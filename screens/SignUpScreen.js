@@ -4,15 +4,16 @@
 import Fire from '../Fire';
 import * as React from 'react';
 import { StyleSheet, Text, View,TextInput,Button,ImageEditor } from 'react-native';
-
+import * as Analytics from 'expo-firebase-analytics';
 
 export default class Signup extends React.Component {
 	state = {
 		name: '',
-		email: 'test@live.com',
-		password: '123456',
+		email: '',
+		password: '',
 		avatar: '',
-		sunet: ''
+		sunet: '',
+		profile: ''
 	};
 
 	onPressCreate = async () => {
@@ -93,7 +94,6 @@ export default class Signup extends React.Component {
 				<Text style={styles.title}>Email:</Text>
 				<TextInput
 					style={styles.nameInput}
-					placeholder="test@live.com"
 					onChangeText={this.onChangeTextEmail}
 					value={this.state.email}
 				/>
@@ -124,7 +124,12 @@ export default class Signup extends React.Component {
 				<Button
 					title="Signup"
 					style={styles.buttonText}
-					onPress={this.onPressCreate}
+					onPress={
+						Analytics.logEvent('SignupButton', {
+							screen: 'SignUp',
+							purpose: 'User clicks on "Signup" text',
+						}),
+						this.onPressCreate}
 				/>
 				<Button
 					title="Upload Avatar"
@@ -134,7 +139,12 @@ export default class Signup extends React.Component {
         <Button
           title="Back to Log In"
           style={styles.buttonText}
-          onPress={() => this.props.navigation.navigate('Chat Rooms')}
+          onPress={() => {
+						Analytics.logEvent('BackToLoginButton', {
+							screen: 'SignUp',
+							purpose: 'User clicks on "Back to Log In" text',
+						});
+						this.props.navigation.navigate('LoginScreen')}}
         />
 			</View>
 		);

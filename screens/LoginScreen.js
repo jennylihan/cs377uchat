@@ -16,20 +16,25 @@ import Fire from '../Fire';
 import {Component, useState} from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import logo from '../assets/images/Code2Gether.png';
-
+import * as Analytics from 'expo-firebase-analytics';
 
 import { MonoText } from '../components/StyledText';
 
 export default class Login extends Component {
 
 	state = {
-		name: 'Test',
-		email: 'test@live.com',
-		password: '123456',
+		name: '',
+		email: '',
+		password: '',
 		avatar: ''
 	}
 
   onPressLogin = async () => {
+    await Analytics.logEvent('LoginButton', {
+      screen: 'Login',
+      purpose: 'User clicks the login button.',
+    });
+
 		const user = {
 			email: this.state.email,
 			password: this.state.password,
@@ -44,6 +49,10 @@ export default class Login extends Component {
 	};
 
   loginSuccess = () => {
+    Analytics.logEvent('SuccessfulLogin', {
+      screen: 'Login',
+      purpose: 'User clicks login and succeeds.',
+    });
     this.props.navigation.navigate('Chat Rooms', {
       email: this.state.email,
       avatar: this.state.avatar
@@ -51,6 +60,10 @@ export default class Login extends Component {
   };
 
   loginFailed = () => {
+    Analytics.logEvent('UnsuccessfulLogin', {
+      screen: 'Login',
+      purpose: 'User clicks login and fails.',
+    });
     alert('Login failure. Please try again.');
   };
 
@@ -78,7 +91,12 @@ export default class Login extends Component {
               onChangeText={this.onChangeTextPassword}/>
         </View>
 
-        <TouchableOpacity style={styles.btnForgotPassword}>
+        <TouchableOpacity style={styles.btnForgotPassword} onPress={() => {
+          Analytics.logEvent('ForgotPasswordButton', {
+            screen: 'login',
+            purpose: 'User clicks that they forgot password.',
+          });
+        }}>
             <Text style={styles.btnText}>Forgot your password?</Text>
         </TouchableOpacity>
 
@@ -86,9 +104,12 @@ export default class Login extends Component {
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
 
-
-        <TouchableOpacity style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('SignUp')}
->
+        <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+          Analytics.logEvent('RegisterButton', {
+            screen: 'login',
+            purpose: 'User clicks register button from login screen.',
+          });
+          this.props.navigation.navigate('SignUp')}}>
             <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
