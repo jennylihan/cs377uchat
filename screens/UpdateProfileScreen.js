@@ -87,15 +87,6 @@ export default class UpdateProfileScreen extends Component {
         })));
   }
 
-  //   Fire.shared.on(message =>
-  //     this.setState(previousState => ({
-  //       messages: GiftedChat.append(previousState.messages, message),
-  //     }))
-  //   ,JSON.stringify(this.props.route.params.chatRoomName));
-  // }
-  // componentWillUnmount() {
-  //   Fire.shared.off();
-  // }
 
 }
 
