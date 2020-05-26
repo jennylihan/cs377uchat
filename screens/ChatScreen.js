@@ -78,7 +78,7 @@ export default class Chatscreen extends Component {
                   });
                   Linking.openURL('sms:'+ this.state.numberother);
                 }}>
-                  <Text>Text</Text>
+                  <Text>Text: {this.state.numberother}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => {
                   Analytics.logEvent('CallUser', {
@@ -87,7 +87,7 @@ export default class Chatscreen extends Component {
                   });
                   Linking.openURL('tel:'+ this.state.numberother);
                 }}>
-                  <Text>Call</Text>
+                  <Text>Call: {this.state.numberother}</Text>
                 </TouchableOpacity>
                 </View>
           </View>
