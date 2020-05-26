@@ -79,7 +79,8 @@ export default class HomeScreen extends Component {
                   screen: 'home',
                   purpose: 'User clicks on Piazza external link',
                 });
-                WebBrowser.openBrowserAsync('https://piazza.com/class/')}}
+                WebBrowser.openBrowserAsync('https://piazza.com/class/')
+              }}
               >
                 <Text style={styles.followButtonText2}>Explore now</Text>
               </TouchableOpacity>

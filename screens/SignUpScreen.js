@@ -23,7 +23,8 @@ export default class Signup extends React.Component {
 				email: this.state.email,
 				password: this.state.password,
 				sunet: this.state.sunet,
-				profile: this.state.profile
+				profile: this.state.profile,
+				number: this.state.number
 				//add more props & match this in Fire.js
 			};
 			await Fire.shared.createAccount(user);
@@ -37,6 +38,8 @@ export default class Signup extends React.Component {
 	onChangeTextName = name => this.setState({ name });
 	onChangeTextSunet = sunet => this.setState({ sunet });
 	onChangeTextProfile = profile => this.setState({ profile });
+	onChangeTextNumber = number => this.setState({ number });
+
 
 
 	onImageUpload = async () => {
@@ -120,6 +123,12 @@ export default class Signup extends React.Component {
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextProfile}
 					value={this.state.profile}
+				/>
+				<Text style={styles.title}>Provide your phone number:</Text>
+				<TextInput
+					style={styles.nameInput}
+					onChangeText={this.onChangeTextNumber}
+					value={this.state.number}
 				/>
 				<Button
 					title="Signup"
