@@ -53,7 +53,7 @@ export default class LinksScreen extends Component {
                   screen: 'Profile',
                   purpose: 'User clicks on "Update Profile" button',
                 });
-                this.props.navigation.navigate('UpdateProfileScreen')}}>
+                this.props.navigation.navigate('Update Profile')}}>
               <Text>Update Profile</Text>
               </TouchableOpacity>
         </View>

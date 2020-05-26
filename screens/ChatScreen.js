@@ -36,14 +36,6 @@ export default class Chatscreen extends Component {
     };
   }
 
-  // //do I need this?
-  //   get otheruser() {
-  //     return {
-  //       nameother: Fire.shared.name,
-  //       _idother: Fire.shared.uid,
-  //     };
-  //   }
-
   handlePressClose() {
     this.setState({modalOpen: false})
   }
