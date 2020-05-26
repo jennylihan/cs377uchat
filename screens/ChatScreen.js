@@ -76,7 +76,7 @@ export default class Chatscreen extends Component {
                     screen: 'ChatRoom',
                     purpose: 'User clicks button to call another user.',
                   });
-                  Linking.openURL('sms:'+ this.state.numberother);
+                  Linking.openURL('sms:'+this.state.numberother);
                 }}>
                   <Text>Text: {this.state.numberother}</Text>
                 </TouchableOpacity>
@@ -85,7 +85,7 @@ export default class Chatscreen extends Component {
                     screen: 'ChatRoom',
                     purpose: 'User clicks button to zoom another user.',
                   });
-                  Linking.openURL('tel:'+ this.state.numberother);
+                  Linking.openURL('tel:'+this.state.numberother);
                 }}>
                   <Text>Call: {this.state.numberother}</Text>
                 </TouchableOpacity>
