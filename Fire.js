@@ -54,6 +54,7 @@ class Fire {
 			    email: user.email,
 			    sunet : user.sunet,
 					profile: user.profile,
+					number: user.number
 			  })
 				.then(function() {
             // console.log('Updated name successfully. name:' + user.name);
@@ -208,6 +209,12 @@ class Fire {
 						firebase.database().ref('/profiles/' + userId)
 							.once('value', snapshot => callback((snapshot.val() && snapshot.val().profile) || 'No profile provided'));
 						}
+
+						getnumberother = (callback, otherUser) => {
+							var userId = otherUser._id;
+							firebase.database().ref('/profiles/' + userId)
+								.once('value', snapshot => callback((snapshot.val() && snapshot.val().number) || 'No number provided'));
+							}
 
 	//
 	// parseProfile = snapshot => {

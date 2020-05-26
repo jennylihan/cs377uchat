@@ -12,7 +12,7 @@ import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
 import { MonoText } from '../components/StyledText';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Analytics from 'expo-firebase-analytics';
-
+import * as Linking from 'expo-linking';
 
 type Props = {
   name?: string,
@@ -46,6 +46,8 @@ export default class Chatscreen extends Component {
       this.setState({nameother:name_result}), user);
       Fire.shared.getprofileother(profile_result =>
         this.setState({profileother:profile_result}), user);
+        Fire.shared.getnumberother(number_result =>
+          this.setState({numberother:number_result}), user);
   }
 
   render() {
@@ -70,21 +72,22 @@ export default class Chatscreen extends Component {
                 <Text style={styles.name}> {this.state.nameother} </Text>
                 <Text style={styles.description}> {this.state.profileother} </Text>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => {
-                  Analytics.logEvent('CallUser', {
+                  Analytics.logEvent('TextUser', {
                     screen: 'ChatRoom',
                     purpose: 'User clicks button to call another user.',
                   });
+                  Linking.openURL('sms:'+ this.state.numberother);
                 }}>
-                  <Text>Call</Text>
+                  <Text>Text</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => {
-                  Analytics.logEvent('ZoomUser', {
+                  Analytics.logEvent('CallUser', {
                     screen: 'ChatRoom',
                     purpose: 'User clicks button to zoom another user.',
                   });
-                  WebBrowser.openBrowserAsync('https://stanford.zoom.us/')
+                  Linking.openURL('tel:'+ this.state.numberother);
                 }}>
-                  <Text>Zoom</Text>
+                  <Text>Call</Text>
                 </TouchableOpacity>
                 </View>
           </View>
