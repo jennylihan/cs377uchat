@@ -82,6 +82,7 @@ export default class Chatscreen extends Component {
                     screen: 'ChatRoom',
                     purpose: 'User clicks button to zoom another user.',
                   });
+                  WebBrowser.openBrowserAsync('https://stanford.zoom.us/')
                 }}>
                   <Text>Zoom</Text>
                 </TouchableOpacity>
