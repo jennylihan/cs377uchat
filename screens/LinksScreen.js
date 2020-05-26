@@ -10,9 +10,6 @@ import {
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Analytics from 'expo-firebase-analytics';
-
-
-
 import Fire from '../Fire';
 
 export default class LinksScreen extends Component {
@@ -65,11 +62,10 @@ export default class LinksScreen extends Component {
     //Pings firebase to get the sunet (stored in result)
     //and in the callback, we set the sunet in the state!
     Fire.shared.getname(sunet_result =>
-      this.setState({sunet:sunet_result}));
       Fire.shared.getname(name_result =>
-        this.setState({name:name_result}));
-        Fire.shared.getprofile(profile_result =>
-          this.setState({profile:profile_result}));
+        Fire.shared.getprofile(profile_result => {
+          this.setState({sunet:sunet_result, name:name_result, profile:profile_result})
+        })));
   }
 }
 

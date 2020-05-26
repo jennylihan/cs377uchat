@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 
 import {
+  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -25,12 +26,12 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       data: [
-        {id:"1", title: "Welcome to Code2Gether",  time:"It's Week 8!", image:"https://lorempixel.com/400/200/nature/5/"} ,
-        {id:"2", title: "PSET #7 is out ",  time:"3 days and 4hrs left",    image:"https://lorempixel.com/400/200/nature/4/"},
+        {id:"0", title: "Welcome to Code2Gether",  time:"It's Week 8!", image:"https://lorempixel.com/400/200/nature/5/"} ,
+        {id:"1", title: "HW #7 is out ",  time:"5 days and 3hrs left",    image:"https://lorempixel.com/400/200/nature/4/"},
       ],
       data2: [
-        {id:1,  name: "Class Piazza Forum",   image:"https://img.icons8.com/ios/50/000000/city-square.png"},
-        {id:2,  name: "Chat about PSET",   image:"https://img.icons8.com/ios/50/000000/speech-bubble-with-dots.png"},
+        {id:"0",  name: "Class Forum",   image:"https://img.icons8.com/ios/50/000000/city-square.png"},
+        {id:"1",  name: "Chat about homework",   image:"https://img.icons8.com/ios/50/000000/speech-bubble-with-dots.png"},
       ]
     };
   }
@@ -39,7 +40,7 @@ export default class HomeScreen extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <FlatList style={styles.list}
           data={this.state.data}
           keyExtractor= {(item) => {
@@ -48,6 +49,9 @@ export default class HomeScreen extends Component {
 
           renderItem={(post) => {
             const item = post.item;
+            console.log("----------")
+            console.log("----------")
+            console.log(post)
             return (
               <TouchableOpacity>
                 <View style={styles.card}>
@@ -102,7 +106,7 @@ export default class HomeScreen extends Component {
           </TouchableOpacity>
 
 
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -112,8 +116,10 @@ const styles = StyleSheet.create({
     backgroundColor:"#B0E0E6",
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    flex: 1
   },
   list: {
+    backgroundColor:"#000000",
   },
 
   /******** card **************/
@@ -187,9 +193,6 @@ buttonText: {
   fontSize:20,
 },
 
-
-
-
 cardContent2: {
     marginLeft:20,
     marginTop:10
@@ -201,7 +204,6 @@ cardContent2: {
     borderWidth:2,
     borderColor:"#ebf0f7"
   },
-
   card2:{
     shadowColor: '#00000021',
     shadowOffset: {
@@ -220,7 +222,6 @@ cardContent2: {
     flexDirection:'row',
     borderRadius:30,
   },
-
   name2:{
     fontSize:18,
     flex:1,
