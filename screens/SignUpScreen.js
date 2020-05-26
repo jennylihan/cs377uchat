@@ -144,7 +144,7 @@ export default class Signup extends React.Component {
 							screen: 'SignUp',
 							purpose: 'User clicks on "Back to Log In" text',
 						});
-						this.props.navigation.navigate('LoginScreen')}}
+						this.props.navigation.navigate('Login')}}
         />
 			</View>
 		);
