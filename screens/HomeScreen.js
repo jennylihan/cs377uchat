@@ -27,10 +27,10 @@ export default class HomeScreen extends Component {
     this.state = {
       data: [
         {id:"0", title: "Welcome to Code2Gether",  time:"It's Week 8!", image:"https://lorempixel.com/400/200/nature/5/"} ,
-        {id:"1", title: "HW #7 is out ",  time:"5 days and 3hrs left",    image:"https://lorempixel.com/400/200/nature/4/"},
+        {id:"1", title: "Assignment #6: 'Dictionaries and Baby Names' is out ",    image:"https://lorempixel.com/400/200/nature/4/"},
       ],
       data2: [
-        {id:"0",  name: "Class Forum",   image:"https://img.icons8.com/ios/50/000000/city-square.png"},
+        {id:"0",  name: "Link to Assignment 6",   image:"https://img.icons8.com/ios/50/000000/city-square.png"},
         {id:"1",  name: "Chat about homework",   image:"https://img.icons8.com/ios/50/000000/speech-bubble-with-dots.png"},
       ]
     };
@@ -75,11 +75,11 @@ export default class HomeScreen extends Component {
               <TouchableOpacity
               style={styles.followButton2}
               onPress={() => {
-                Analytics.logEvent('PiazzaButton', {
+                Analytics.logEvent('AssignmentLink', {
                   screen: 'home',
-                  purpose: 'User clicks on Piazza external link',
+                  purpose: 'User clicks on external assignment link',
                 });
-                WebBrowser.openBrowserAsync('https://piazza.com/class/')
+                WebBrowser.openBrowserAsync('https://web.stanford.edu/class/cs106a/assn/babynames')
               }}
               >
                 <Text style={styles.followButtonText2}>Explore now</Text>

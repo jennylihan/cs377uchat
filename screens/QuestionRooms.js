@@ -15,66 +15,85 @@ class QuestionRooms extends React.Component {
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 1 Chat Room"
+          label="General/Conceptual Questions"
           onPress={() => {
-            Analytics.logEvent('QuestionOne', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Question 1 Chat Room"',
             });
-            this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages1'})}}
+            this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_general'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 2 Chat Room"
+          label="Milestone 1: Add a single name"
           onPress={() => {
-            Analytics.logEvent('QuestionTwo', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
-              purpose: 'User clicks on "Question 2 Chat Room"',
+              purpose: 'User clicks on "Milestone 1 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages2'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone1'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 3 Chat Room"
+          label="Milestone 2: Processing a whole file"
           onPress={() => {
-            Analytics.logEvent('QuestionThree', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
-              purpose: 'User clicks on "Question 3 Chat Room"',
+              purpose: 'User clicks on "Milestone 2 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages3'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone2'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 4 Chat Room"
+          label="Milestone 3: Processing files and enabling search"
           onPress={() => {
-            Analytics.logEvent('QuestionFour', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
-              purpose: 'User clicks on "Question 4 Chat Room"',
+              purpose: 'User clicks on "Milestone 3 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages4'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone3'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 5 Chat Room"
+          label="Milestone 4: Run the provided graphics code"
           onPress={() => {
-            Analytics.logEvent('QuestionFive', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
-              purpose: 'User clicks on "Question 5 Chat Room"',
+              purpose: 'User clicks on "Milestone 4 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages5'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone4'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
-          label="Question 6 Chat Room"
+          label="Milestone 5: Draw the background grid"
           onPress={() => {
-            Analytics.logEvent('QuestionSix', {
+            Analytics.logEvent('JoinChat', {
               screen: 'QuestionRooms',
-              purpose: 'User clicks on "Question 5 Chat Room"',
+              purpose: 'User clicks on "Milestone 5 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages6'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone5'})}}
+        />
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Milestone 6: Plot the baby name data"
+          onPress={() => {
+            Analytics.logEvent('JoinChat', {
+              screen: 'QuestionRooms',
+              purpose: 'User clicks on "Milestone 6 Chat Room"',
+            });
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone6'})}}
+        />
+        <OptionButton
+          icon="ios-chatboxes"
+          label="Extension features"
+          onPress={() => {
+            Analytics.logEvent('JoinChat', {
+              screen: 'QuestionRooms',
+              purpose: 'User clicks on "Extensions"',
+            });
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_extensions'})}}
           isLastOption
         />
-
       </ScrollView>
     );
   }
