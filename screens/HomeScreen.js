@@ -41,72 +41,38 @@ export default class HomeScreen extends Component {
     const { navigation } = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <FlatList style={styles.list}
-          data={this.state.data}
-          keyExtractor= {(item) => {
-            return item.id;
-          }}
+        <View style={styles.filterContainer}>
+          <Image
+            style={styles.img}
+            source={require('../assets/images/Background.png')}
+          />
+        </View>
 
-          renderItem={(post) => {
-            const item = post.item;
-            console.log("----------")
-            console.log("----------")
-            console.log(post)
-            return (
-              <TouchableOpacity>
-                <View style={styles.card}>
-
-                  <Image style={styles.cardImage} source={{uri:item.image}}/>
-                  <View style={styles.cardContent}>
-                    <View>
-                      <Text style={styles.title}>{item.title}</Text>
-                      <Text style={styles.time}>{item.time}</Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            )
-          }}/>
-
-          <TouchableOpacity style={styles.card2}>
-            <Image style={styles.image2} source={{uri: this.state.data2[0].image}}/>
-            <View style={styles.cardContent2}>
-              <Text style={styles.name2}>{this.state.data2[0].name}</Text>
-              <TouchableOpacity
-              style={styles.followButton2}
-              onPress={() => {
-                Analytics.logEvent('AssignmentLink', {
-                  screen: 'home',
-                  purpose: 'User clicks on external assignment link',
-                });
-                WebBrowser.openBrowserAsync('https://web.stanford.edu/class/cs106a/assn/babynames')
-              }}
-              >
-                <Text style={styles.followButtonText2}>Explore now</Text>
-              </TouchableOpacity>
-            </View>
+        <View style={styles.rows}>
+          <TouchableOpacity
+            onPress={() => {
+              Analytics.logEvent('AskQuestionButton', {
+                screen: 'home',
+                purpose: 'User clicks on "Ask a question in the Chat Rooms"',
+              });
+              navigation.navigate('Chat')}}
+            >
+            <Image source={require('../assets/images/Chatrooms.png')}/>
           </TouchableOpacity>
 
-
-          <TouchableOpacity style={styles.card2}>
-            <Image style={styles.image2} source={{uri: this.state.data2[1].image}}/>
-            <View style={styles.cardContent2}>
-              <Text style={styles.name2}>{this.state.data2[1].name}</Text>
-              <TouchableOpacity
-              style={styles.followButton2}
-              onPress={() => {
-                Analytics.logEvent('AskQuestionButton', {
-                  screen: 'home',
-                  purpose: 'User clicks on "Ask a question in the Chat Rooms"',
-                });
-                navigation.navigate('Chat')}}
-              >
-                <Text style={styles.followButtonText2}>Explore now</Text>
-              </TouchableOpacity>
-            </View>
+          <TouchableOpacity
+            style={styles.bubble}
+            onPress={() => {
+              Analytics.logEvent('AssignmentLink', {
+                screen: 'home',
+                purpose: 'User clicks on external assignment link',
+              });
+              WebBrowser.openBrowserAsync('https://web.stanford.edu/class/cs106a/assn/babynames')
+            }}
+          >
+            <Image source={require('../assets/images/Assignments.png')}/>
           </TouchableOpacity>
-
-
+        </View>
       </SafeAreaView>
     );
   }
@@ -114,13 +80,28 @@ export default class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:"#B0E0E6",
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    flex: 1
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection:'column',
+    justifyContent: 'space-evenly'
+  },
+  img: {
+    top: 40
   },
   list: {
     backgroundColor:"#000000",
+  },
+  rows: {
+    left: -5,
+    top: -200,
+    width: 250,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  bubble: {
+    alignItems: 'center',
+    top: -5
   },
 
   /******** card **************/
