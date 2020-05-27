@@ -21,7 +21,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Question 1 Chat Room"',
             });
-            this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_general'})}}
+            this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_general'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -31,7 +31,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 1 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone1'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone1'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -41,7 +41,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 2 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone2'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone2'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -51,7 +51,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 3 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone3'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone3'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -61,7 +61,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 4 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone4'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone4'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -71,7 +71,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 5 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone5'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone5'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -81,7 +81,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Milestone 6 Chat Room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_milestone6'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_milestone6'})}}
         />
         <OptionButton
           icon="ios-chatboxes"
@@ -91,20 +91,9 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Extensions"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'a6_extensions'})}}
-        />
-        <OptionButton
-          icon="ios-chatboxes"
-          label="Use this chat room for testing features"
-          onPress={() => {
-            Analytics.logEvent('TestChatRoom', {
-              screen: 'QuestionRooms',
-              purpose: 'User clicks on "Testing chat room"',
-            });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages6', test: 'hello'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'assignment6_extensions'})}}
           isLastOption
         />
-
       </ScrollView>
     );
   }
