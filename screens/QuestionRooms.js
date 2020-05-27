@@ -101,7 +101,7 @@ class QuestionRooms extends React.Component {
               screen: 'QuestionRooms',
               purpose: 'User clicks on "Testing chat room"',
             });
-          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages6'})}}
+          this.props.navigation.navigate('Chat Room', {chatRoomName: 'messages6', test: 'hello'})}}
           isLastOption
         />
 

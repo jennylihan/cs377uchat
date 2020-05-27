@@ -22,6 +22,10 @@ function Welcome(props){
   return <Text style={styles.getStartedText}>Hello, {props.name}</Text>;
 }
 
+function Chatroominfo(props){
+  return <Text style={styles.tabBarInfoText}>This chatroom is for: {props.name}</Text>;
+}
+
 export default class Chatscreen extends Component {
 
   state = {
@@ -95,6 +99,7 @@ export default class Chatscreen extends Component {
 
 
         <Welcome style={styles.getStartedText} name={this.user.name}/>
+        <Chatroominfo style={styles.getStartedText} name={Fire.shared.chatRoomName}/>
         <GiftedChat
           messages={this.state.messages}
           onSend={Fire.shared.send}
@@ -108,6 +113,7 @@ export default class Chatscreen extends Component {
               screen: 'ChatRoom',
               purpose: 'User clicks on the avatar of another user within a chat room',
             });
+            // console.log('Closing profile');
             this.handlePressOpen(user)}}
           //this.props.current.currentMessage.user
         />
@@ -116,6 +122,8 @@ export default class Chatscreen extends Component {
   }
 
   componentDidMount() {
+    // console.log('Render chat room'),
+    // console.log(Fire.shared.chatRoomName),
     Fire.shared.on(message =>
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, message),
