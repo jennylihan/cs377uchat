@@ -3,7 +3,7 @@
 
 import Fire from '../Fire';
 import * as React from 'react';
-import { StyleSheet, Text, View,TextInput,Button,ImageEditor } from 'react-native';
+import { ScrollView, StyleSheet, Text, View,TextInput,Button,ImageEditor } from 'react-native';
 import * as Analytics from 'expo-firebase-analytics';
 
 export default class Signup extends React.Component {
