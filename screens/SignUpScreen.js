@@ -125,11 +125,13 @@ export default class Signup extends React.Component {
 					onChangeText={this.onChangeTextProfile}
 					value={this.state.profile}
 				/>
-				<Text style={styles.title}>Provide your phone number:</Text>
+				<Text style={styles.title}>Provide your phone number (optional):</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextNumber}
 					value={this.state.number}
+					defaultValue="Optional"
+
 				/>
 				<Button
 					title="Signup"
