@@ -93,7 +93,7 @@ export default class Signup extends React.Component {
 
 	render() {
 		return (
-			<View>
+			<ScrollView>
 				<Text style={styles.title}>Email:</Text>
 				<TextInput
 					style={styles.nameInput}
@@ -155,7 +155,7 @@ export default class Signup extends React.Component {
 						});
 						this.props.navigation.navigate('Login')}}
         />
-			</View>
+			</ScrollView>
 		);
 	}
 }
