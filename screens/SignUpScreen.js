@@ -13,7 +13,8 @@ export default class Signup extends React.Component {
 		password: '',
 		avatar: '',
 		sunet: '',
-		profile: ''
+		profile: '',
+		number: ''
 	};
 
 	onPressCreate = async () => {
