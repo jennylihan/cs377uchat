@@ -102,7 +102,12 @@ export default class Chatscreen extends Component {
         <Chatroominfo style={styles.getStartedText} name={Fire.shared.chatRoomName}/>
         <GiftedChat
           messages={this.state.messages}
-          onSend={Fire.shared.send}
+          onSend={
+            Analytics.logEvent('SendMessage', {
+              screen: 'ChatRoom',
+              purpose: 'User sends message to groupchat',
+            }),
+            Fire.shared.send}
           user={this.user}
           renderUsernameOnMessage={true}
           showAvatarForEveryMessage={true}
