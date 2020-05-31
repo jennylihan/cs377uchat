@@ -101,7 +101,7 @@ export default class Signup extends React.Component {
 					onChangeText={this.onChangeTextEmail}
 					value={this.state.email}
 				/>
-				<Text style={styles.title}>Password:</Text>
+				<Text style={styles.title}>Password (> 6 characters):</Text>
 				<TextInput
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextPassword}
@@ -113,12 +113,6 @@ export default class Signup extends React.Component {
 					onChangeText={this.onChangeTextName}
 					value={this.state.name}
 				/>
-				<Text style={styles.title}>Zoom link (SUNet ID before the @ sign):</Text>
-				<TextInput
-					style={styles.nameInput}
-					onChangeText={this.onChangeTextSunet}
-					value={this.state.zoom}
-				/>
 				<Text style={styles.title}>Introduce yourself (working style, prior courses, etc):</Text>
 				<TextInput
 					style={styles.nameInput}
@@ -127,10 +121,10 @@ export default class Signup extends React.Component {
 				/>
 				<Text style={styles.title}>Provide your phone number (optional):</Text>
 				<TextInput
+					defaultValue='Optional'
 					style={styles.nameInput}
 					onChangeText={this.onChangeTextNumber}
 					value={this.state.number}
-					defaultValue="Optional"
 
 				/>
 				<Button
